@@ -1,4 +1,4 @@
-// PLUGIN: Subtitle
+// PLUGIN: Paint
 
 (function ( Popcorn ) {
 
@@ -35,21 +35,21 @@
       };
 
   /**
-   * Subtitle popcorn plug-in
-   * Displays a subtitle over the video, or in the target div
+   * Paint popcorn plug-in
+   * Displays a paintpad canvas over the video, or in the target div
    * Options parameter will need a start, and end.
    * Optional parameters are target and text.
    * Start is the time that you want this plug-in to execute
    * End is the time that you want this plug-in to stop executing
    * Target is the id of the document element that the content is
    *  appended to, this target element must exist on the DOM
-   * Text is the text of the subtitle you want to display.
+   * Text is the text of the ... you want to display.?????
    *
    * @param {Object} options
    *
    * Example:
      var p = Popcorn('#video')
-        .subtitle({
+        .paint({
           start:            5,                 // seconds, mandatory
           end:              15,                // seconds, mandatory
           text:             'Hellow world',    // optional
@@ -58,14 +58,14 @@
    *
    */
 
-  Popcorn.plugin( "subtitle" , {
+  Popcorn.plugin( "paint" , {
 
       manifest: {
         about: {
-          name: "Popcorn Subtitle Plugin",
+          name: "Popcorn Paint Plugin",
           version: "0.1",
-          author: "Scott Downe",
-          website: "http://scottdowne.wordpress.com/"
+          author: "Osman Alper",
+          website: "none"
         },
         options: {
           start: {
@@ -78,7 +78,7 @@
             type: "text",
             label: "End"
           },
-          target: "subtitle-container",
+          target: "paint-container",
           text: {
             elem: "input",
             type: "text",
@@ -90,15 +90,15 @@
       _setup: function( options ) {
         var newdiv = document.createElement( "div" );
 
-        newdiv.id = "subtitle-" + i++;
+        newdiv.id = "paint-" + i++;
         newdiv.style.display = "none";
 
-        // Creates a div for all subtitles to use
-        ( !this.container && ( !options.target || options.target === "subtitle-container" ) ) &&
+        // Creates a div to use
+        ( !this.container && ( !options.target || options.target === "paint-container" ) ) &&
           createDefaultContainer( this );
 
         // if a target is specified, use that
-        if ( options.target && options.target !== "subtitle-container" ) {
+        if ( options.target && options.target !== "paint-container" ) {
           // In case the target doesn't exist in the DOM
           options.container = document.getElementById( options.target ) || createDefaultContainer( this, options.target );
         } else {
@@ -109,14 +109,12 @@
         document.getElementById( options.container.id ) && document.getElementById( options.container.id ).appendChild( newdiv );
         options.innerContainer = newdiv;
 
-        options.showSubtitle = function() {
+        options.showPaint = function() {
           options.innerContainer.innerHTML = options.text || "";
         };
       },
       /**
-       * @member subtitle
-       * The start function will be executed when the currentTime
-       * of the video  reaches the start time provided by the
+       
        * options variable
        */
       start: function( event, options ){
