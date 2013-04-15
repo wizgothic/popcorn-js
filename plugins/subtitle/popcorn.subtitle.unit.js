@@ -1,4 +1,4 @@
-asyncTest( "Popcorn Subtitle Plugin", function() {
+asyncTest( "Popcorn Paint Plugin", function() {
 
   var popped = Popcorn( "#video" ),
       popped2 = Popcorn( "#video2" ),
@@ -6,8 +6,8 @@ asyncTest( "Popcorn Subtitle Plugin", function() {
       count = 0,
       subTop = 9001,
       subLeft = 9001,
-      subtitlediv,
-      subtitle2div;
+      paintdiv,
+      paint2div;
 
   expect( expects );
 
@@ -17,7 +17,7 @@ asyncTest( "Popcorn Subtitle Plugin", function() {
     }
   }
 
-  ok( "subtitle" in popped, "subtitle is a method of the popped instance" );
+  ok( "paint" in popped, "paint is a method of the popped instance" );
   plus();
 
   popped.subtitle({
